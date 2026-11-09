@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Қазақстан картасындағы Менделеев кестесі</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Unbounded:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div id="flash"></div>
+
+<!-- ======= Жүктеу ======= -->
+<div id="loader">
+  <div class="loader-atom"><i></i><i></i><i></i><b></b></div>
+  <p>Виртуалды әлем жүктелуде…</p>
+</div>
+
+<!-- ======= Жоғарғы мәзір ======= -->
+<header id="topbar">
+  <button class="brand" data-go="home"><span class="brand-mark">Kz</span><span class="brand-text">Менделеев кестесі<br><small>Қазақстан картасында</small></span></button>
+  <nav id="nav">
+    <button data-go="home" class="on">Басты</button>
+    <button data-go="map">3D Карта</button>
+    <button data-go="table">Кесте</button>
+    <button data-go="lab">Зертхана</button>
+    <button data-go="quiz">Викторина</button>
+    <button data-go="idea">Идея</button>
+    <button data-go="author">Автор</button>
+  </nav>
+  <div class="tools">
+    <button id="btn-tour" title="Авто-тур: дауыспен саяхат">▶ Авто-тур</button>
+    <button id="btn-music" title="Әуен">♫</button>
+    <button id="btn-voice" title="Дауыстап оқу" class="on">🔊</button>
+    <button id="btn-menu" aria-label="Мәзір">☰</button>
+  </div>
+</header>
+
+<!-- ======= Басты бет ======= -->
+<section class="sec" id="sec-home">
+  <div class="hero">
+    <p class="school">«Васильковка негізгі мектебі» КММ</p>
+    <h1><span>Қазақстан картасындағы</span><em>Менделеев кестесі</em></h1>
+    <p class="lead">Қазақстан картасында элементтер белгіленген. Элементті басқанда — оның кен орны мен қасиеттері шығады. Элементтің Менделеев кестесіндегі орны мен қолданылуы да беріледі.</p>
+    <div class="hero-btns">
+      <button class="btn primary" id="btn-start">Саяхатты бастау ✦</button>
+      <button class="btn" data-go="table">Кестені ашу</button>
+      <button class="btn" data-go="lab">Зертханаға кіру</button>
+    </div>
+    <div class="hero-stats">
+      <div><b data-count="118">0</b><span>элемент</span></div>
+      <div><b data-count="28">0</b><span>кен орны</span></div>
+      <div><b data-count="40">0</b><span>элемент Қазақстан картасында</span></div>
+      <div><b data-count="14">0</b><span>3D тәжірибе</span></div>
+    </div>
+    <button class="author-chip" data-go="author"><img src="img/author.jpg" alt=""><span>Авторы<br><b>Маулен Айдана</b></span></button>
+  </div>
+  <div class="hint">🖱 Тінтуірді жылжытыңыз — әлем қозғалады</div>
+</section>
+
+<!-- ======= Карта ======= -->
+<section class="sec" id="sec-map">
+  <div class="lbl-layer" id="lbl-map"></div>
+  <div class="panel left glass collapsed" id="map-filter">
+    <h3>⚛ Элементтер бойынша сүзгі <span class="tog">▾</span></h3>
+    <p class="muted">Элементті таңдасаңыз — картада оның кен орындары жарқырайды</p>
+    <div class="chips" id="map-chips"></div>
+    <p class="muted small">Кен орындарының орны схемалық түрде, шамамен көрсетілген.</p>
+  </div>
+  <div class="panel right glass hidden" id="map-info"></div>
+  <div class="hint">Айналып тұрған элементті басыңыз — кен орнына саяхат · Айналдыру — тінтуірдің сол батырмасы · Жақындату — тінтуір дөңгелегі</div>
+</section>
+
+<!-- ======= Кен орнына саяхат ======= -->
+<section class="sec" id="sec-site">
+  <div class="lbl-layer" id="lbl-site"></div>
+  <div class="site-top glass">
+    <button class="mini gold" id="site-back">← Картаға оралу</button>
+    <div class="site-name"><small id="site-type"></small><b id="site-title"></b></div>
+    <button class="mini" id="site-prev" title="Алдыңғы кен орны">◀</button>
+    <button class="mini" id="site-next" title="Келесі кен орны">▶</button>
+  </div>
+  <div class="panel right glass" id="site-info"></div>
+  <div class="hint">Айналдыру — тінтуірдің сол батырмасы · Жақындату — тінтуір дөңгелегі · ◀ ▶ — басқа кен орындары</div>
+</section>
+
+<!-- ======= Кесте ======= -->
+<section class="sec" id="sec-table">
+  <div class="bar glass" id="table-bar">
+    <div class="seg" id="layouts">
+      <button data-layout="table" class="on">Кесте</button>
+      <button data-layout="kz">Қазақстан</button>
+      <button data-layout="sphere">Шар</button>
+      <button data-layout="helix">Спираль</button>
+    </div>
+    <input id="search" placeholder="Іздеу: Cu, мыс, 29…" autocomplete="off">
+  </div>
+  <div class="legend glass" id="legend"></div>
+</section>
+
+<!-- ======= Зертхана ======= -->
+<section class="sec" id="sec-lab">
+  <div class="panel left glass lab-left">
+    <h3>Тәжірибелер</h3>
+    <div id="rx-list"></div>
+    <h3 class="mt">Өз тәжірибең</h3>
+    <div class="mix">
+      <select id="mix-a"></select>
+      <span>+</span>
+      <select id="mix-b"></select>
+      <button class="btn primary" id="mix-go">Араластыру</button>
+    </div>
+  </div>
+  <div class="panel right glass hidden" id="rx-info"></div>
+  <div class="safety">⚠ Виртуалды зертхана. Нағыз тәжірибелерді тек мұғаліммен, қорғаныс көзілдірігімен жасаңыз!</div>
+</section>
+
+<!-- ======= Викторина ======= -->
+<section class="sec page" id="sec-quiz">
+  <div class="card glass quiz">
+    <div class="quiz-head"><h2>Викторина</h2><span id="quiz-score"></span></div>
+    <div class="progress"><i id="quiz-bar"></i></div>
+    <div id="quiz-body"></div>
+  </div>
+</section>
+
+<!-- ======= Педагогикалық идея ======= -->
+<section class="sec page" id="sec-idea">
+  <div class="card glass idea">
+    <h2>Педагогикалық идея</h2>
+    <p class="muted">«Педагогикалық идеялар фестивалі» · «Шеберлік палитрасы» бағыты · химия, география</p>
+    <div class="idea-grid">
+      <article><h4>Өзектілігі</h4><p>Оқушылар Менделеев кестесін көбіне жаттанды кесте ретінде қабылдайды. Ал Қазақстан жер қойнауынан кестедегі элементтердің басым бөлігі табылған. Элементті туған жердің картасымен байланыстыру химияны өмірге жақындатады.</p></article>
+      <article><h4>Мақсаты</h4><p>Интерактивті 3D орта арқылы оқушылардың химиялық элементтер мен Қазақстанның минералдық-шикізат байлығы туралы білімін тереңдету, танымдық қызығушылығы мен патриоттық сезімін арттыру.</p></article>
+      <article><h4>Міндеттері</h4><ul><li>элементтің кестедегі орны мен құрылысын 3D модельде көрсету;</li><li>кен орындарын картадан табуды үйрету;</li><li>реакцияларды қауіпсіз виртуалды зертханада бақылау;</li><li>білімді викторина арқылы бекіту.</li></ul></article>
+      <article><h4>Сабақта қолдану</h4><ul><li><b>Кіріспе:</b> «Авто-тур» — дауыспен 3D саяхат.</li><li><b>Жаңа тақырып:</b> элементті кестеден ашып, картадан кенін табу.</li><li><b>Практика:</b> виртуалды зертхана, теңдеу жазу.</li><li><b>Рефлексия:</b> викторина, «өз облысымның элементі» жобасы.</li></ul></article>
+      <article><h4>Күтілетін нәтиже</h4><p>Оқушы элементтің атомдық құрылысын, қасиеттерін, қолданылуын және Қазақстандағы кен орнын байланыстыра түсіндіре алады; химия мен географияның пәнаралық байланысын көреді.</p></article>
+      <article><h4>Тиімділігі</h4><p>Көрнекілік (3D, нақты фотосуреттер), дауыстық сүйемелдеу, ойын элементі және мемлекеттік тілде мазмұн — оқушының белсенділігін арттырады. Құрал интернетсіз де, кез келген браузерде жұмыс істейді.</p></article>
+    </div>
+    <div class="annot">
+      <div><h4>Аңдатпа</h4><p>«Қазақстан картасындағы Менделеев кестесі» — химиялық элементтерді Қазақстанның 3D картасымен, кен орындарымен, виртуалды зертханамен және викторинамен біріктіретін интерактивті оқу құралы. Элементті басқанда оның кен орны, қасиеттері, кестедегі орны мен қолданылуы көрсетіледі.</p></div>
+      <div><h4>Аннотация</h4><p>«Таблица Менделеева на карте Казахстана» — интерактивное учебное пособие, объединяющее химические элементы с 3D-картой Казахстана, месторождениями, виртуальной лабораторией и викториной. При нажатии на элемент показываются его месторождение, свойства, место в периодической таблице и применение.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= Автор ======= -->
+<section class="sec page" id="sec-author">
+  <div class="card glass author">
+    <div class="author-photo"><img src="img/author.jpg" alt="Маулен Айдана"><div class="ring"></div></div>
+    <div class="author-text">
+      <p class="muted">Жобаның авторы</p>
+      <h2>Маулен Айдана</h2>
+      <p class="school-big">«Васильковка негізгі мектебі» КММ</p>
+      <div class="topic"><span>Тақырып</span><b>Қазақстан картасындағы Менделеев кестесі</b></div>
+      <p>Қазақстан картасында элементтер белгіленген. Элементті басқанда, оның кен орны мен қасиеттері шығады. Элементтің Менделеев кестесіндегі орны мен қолданылуы да беріледі.</p>
+      <div class="hero-btns"><button class="btn primary" data-go="map">Картаны ашу</button><button class="btn" id="btn-credits">Дереккөздер</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= Элемент терезесі ======= -->
+<div id="el-modal" class="modal hidden">
+  <div class="modal-card glass">
+    <button class="close" data-close>✕</button>
+    <div class="el-left">
+      <canvas id="atom"></canvas>
+      <div class="atom-cap">Атомның Бор моделі · электрон қабаттары: <b id="atom-shells"></b></div>
+    </div>
+    <div class="el-right" id="el-body"></div>
+  </div>
+</div>
+
+<!-- ======= Дереккөздер ======= -->
+<div id="credits" class="modal hidden">
+  <div class="modal-card glass credits-card">
+    <button class="close" data-close>✕</button>
+    <h2>Дереккөздер</h2>
+    <p>Элементтер мен кен орындарының фотосуреттері — Wikimedia Commons (еркін лицензиялар: CC BY / CC BY-SA / Public Domain). Әр суреттің астында файл атауы көрсетілген.</p>
+    <p>Қазақстан шекарасы — geoBoundaries (CC BY 4.0). 3D графика — Three.js (MIT лицензиясы). Әуен — бағдарлама арқылы нақты уақытта жасалатын түпнұсқа домбыра әуені. Қазақша дыбыстау — Microsoft нейрондық дауысы (Aigul) арқылы алдын ала жазылған.</p>
+    <p>Кен орындары туралы мәліметтер ашық энциклопедиялық дереккөздерден жинақталды; картадағы орындары схемалық.</p>
+  </div>
+</div>
+
+<div id="tooltip"></div>
+<div id="subtitle"><span></span></div>
+
+<script src="vendor/three.min.js"></script>
+<script src="vendor/OrbitControls.js"></script>
+<script src="js/kzshape.js"></script>
+<script src="js/photos.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
